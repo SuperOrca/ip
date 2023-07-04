@@ -1,24 +1,22 @@
 const search = document.getElementById("search")
 const ip = document.getElementsByClassName("ip")[0]
+const network = document.getElementById("network")
+const version = document.getElementById("version")
+const loc = document.getElementById("location")
 const country = document.getElementById("country")
-const countryCode = document.getElementById("countryCode")
-const regionName = document.getElementById("regionName")
-const region = document.getElementById("region")
-const city = document.getElementById("city")
-const zip = document.getElementById("zip")
-const lat = document.getElementById("lat")
-const lon = document.getElementById("lon")
+const postal = document.getElementById("postal")
+const latitude = document.getElementById("latitude")
+const longitude = document.getElementById("longitude")
 const timezone = document.getElementById("timezone")
-const isp = document.getElementById("isp")
+const asn = document.getElementById("asn")
 const org = document.getElementById("org")
-const as = document.getElementById("as")
 
 
 var data = {}
 
 async function getData(ip) {
   try {
-    const url = `http://ip-api.com/json/${ip}`
+    const url = (ip === "") ? "https://ipapi.co/json/" : `https://ipapi.co/8.8.8.8/json/`
     const response = await fetch(url)
 
     if (response.ok) {
@@ -38,19 +36,17 @@ async function update() {
   search.value = ""
   const data = await getData(query)
   
-  ip.innerHTML = data.query
-  country.innerHTML = data.country
-  countryCode.innerHTML = data.countryCode
-  regionName.innerHTML = data.regionName
-  region.innerHTML = data.region
-  city.innerHTML = data.city
-  zip.innerHTML = data.zip
-  lat.innerHTML = data.lat
-  lon.innerHTML = data.lon
+  ip.innerHTML = data.ip
+  network.innerHTML = data.network
+  version.innerHTML = data.version
+  loc.innerHTML = `${data.city}, ${data.region}`
+  country.innerHTML = data.country_name
+  postal.innerHTML = data.postal
+  latitude.innerHTML = data.latitude
+  longitude.innerHTML = data.longitude
   timezone.innerHTML = data.timezone
-  isp.innerHTML = data.isp
+  asn.innerHTML = data.asn
   org.innerHTML = data.org
-  as.innerHTML = data.as
 }
 
 function query(event) {

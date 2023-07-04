@@ -76,7 +76,9 @@ td:first-child {
 }
 
 footer {
-  padding-top: 2vh;
-  padding-bottom: 2vh;
+  position: fixed;
   text-align: center;
+  bottom: 0;
+  width: 100%;
+  padding: 2vh;
 }
