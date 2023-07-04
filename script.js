@@ -16,7 +16,7 @@ var data = {}
 
 async function getData(ip) {
   try {
-    const url = (ip === "") ? "https://ipapi.co/json/" : `https://ipapi.co/8.8.8.8/json/`
+    const url = (ip === "") ? "https://ipapi.co/json/" : `https://ipapi.co/${ip}/json/`
     const response = await fetch(url)
 
     if (response.ok) {
